@@ -1,0 +1,548 @@
+/* Global variables */
+:root {
+  --primary-color: #1d1d1f;
+  --accent-color: #06c;
+  --chart-colors: #2997ff, #35c759, #ff2d55, #5856d6, #ff9500;
+  --chart-primary: #2997ff;
+  --chart-background: #f5f5f7;
+  --text-color: #1d1d1f;
+  --background-color: #fbfbfd;
+  --section-spacing: 130px;
+  --transition-duration: 0.5s;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-color);
+  line-height: 1.47059;
+  letter-spacing: -0.022em;
+  background-color: var(--background-color);
+  overflow-x: hidden;
+}
+
+/* Header/Hero */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 56px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+  z-index: 2;
+  position: relative;
+}
+
+.hero .subtitle {
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards 0.3s;
+  z-index: 2;
+  position: relative;
+}
+
+/* Sections */
+.section {
+  padding: 100px 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+}
+
+.section:nth-child(even) {
+  background-color: #000;
+  color: #fff;
+}
+
+.section:nth-child(odd) {
+  background-color: #fff;
+  color: #000;
+}
+
+.content-wrapper {
+  width: 95vw;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.text-content {
+  width: 60vw;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.text-content h2 {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #fff 0%, #f5f5f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 21px;
+  line-height: 1.381;
+  letter-spacing: 0.011em;
+}
+
+/* Visualization containers */
+.viz-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 40px;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.visualization {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  width: 100%;
+  height: 400px;
+  margin: 20px 0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-duration) cubic-bezier(0.42, 0, 0.58, 1);
+  position: relative;
+  overflow: visible;
+  opacity: 0;
+}
+
+.visualization:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Scroll animations */
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--primary-color);
+  color: #f5f5f7;
+  font-size: 12px;
+  line-height: 1.33337;
+  letter-spacing: -0.01em;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 1068px) {
+  .hero h1 {
+    font-size: 48px;
+  }
+
+  .hero .subtitle {
+    font-size: 24px;
+  }
+
+  .text-content h2 {
+    font-size: 40px;
+  }
+
+  .text-content p {
+    font-size: 19px;
+  }
+
+  .content-wrapper {
+    width: 90vw;
+  }
+
+  .text-content {
+    width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero .subtitle {
+    font-size: 19px;
+  }
+
+  .text-content h2 {
+    font-size: 32px;
+  }
+
+  .text-content p {
+    font-size: 17px;
+  }
+
+  .viz-container {
+    grid-template-columns: 1fr;
+    width: 90vw;
+  }
+
+  .visualization {
+    height: auto !important;
+    min-height: 300px;
+  }
+
+  .section {
+    padding: calc(var(--section-spacing) / 2) 0;
+  }
+
+  .content-wrapper {
+    padding: 0 15px;
+  }
+
+  .text-content {
+    width: 85vw;
+  }
+}
+
+/* Specific styles for D3 visualizations */
+.visualization svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.visualization text {
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  fill: #86868b;
+  font-size: 14px;
+}
+
+.visualization .axis text {
+  font-size: 14px;
+  fill: #86868b;
+  font-weight: 600;
+}
+
+.visualization .axis line,
+.visualization .axis path {
+  stroke: #d2d2d7;
+  stroke-width: 1;
+}
+
+.visualization .tooltip {
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* Chart styles */
+.visualization rect.bar,
+.visualization rect.histogram-bar {
+  fill: var(--chart-primary);
+  opacity: 0.8;
+}
+
+.visualization path.area {
+  fill: var(--chart-primary);
+  opacity: 0.6;
+}
+
+.visualization circle {
+  fill: var(--chart-primary);
+  opacity: 0.7;
+}
+
+.visualization .axis text {
+  font-size: 12px;
+  fill: #86868b;
+  font-weight: 500;
+}
+
+.visualization .axis line {
+  stroke: #d2d2d7;
+  stroke-width: 1;
+}
+
+.visualization .axis path {
+  stroke: #d2d2d7;
+  stroke-width: 1;
+}
+
+.visualization {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.visualization.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Specific visualization adjustments */
+#clusters.visualization {
+  height: 450px;
+  grid-column: 1 / -1; /* Prend toute la largeur */
+}
+
+/* SVG tooltip styles */
+.visualization .tooltip-bg {
+  fill: rgba(0, 0, 0, 0.8);
+}
+
+.visualization .tooltip-text {
+  fill: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* SVG Elements */
+.visualization .histogram-bar {
+  fill: var(--chart-primary);
+  opacity: 0.8;
+}
+
+.visualization .axis-label {
+  fill: #86868b;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.visualization .tooltip-bg {
+  fill: rgba(0, 0, 0, 0.8);
+}
+
+.visualization .tooltip-text {
+  fill: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.visualization .axis path,
+.visualization .axis line {
+  stroke: #d2d2d7;
+  stroke-width: 1;
+}
+
+/* Cluster styles */
+.visualization .cluster-point {
+  transition: r 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.visualization .cluster-point:hover {
+  opacity: 1;
+}
+
+.visualization.full-width {
+  grid-column: 1 / -1;
+  min-height: 400px;
+  display: block;
+  visibility: visible;
+}
+
+/* Adjustments for sections with two visualizations */
+#listening-habits .viz-container,
+#music-tastes .viz-container,
+#mental-health .viz-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+#listening-habits .visualization,
+#music-tastes .visualization,
+#mental-health .visualization {
+  display: block;
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 735px) {
+  #listening-habits .viz-container,
+  #music-tastes .viz-container,
+  #mental-health .viz-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ensure streaming platforms visualization is visible */
+#streaming-platforms.visualization {
+  display: block;
+  visibility: visible;
+  margin-top: 30px;
+}
+
+/* Specific sizes for each chart type */
+#age-distribution {
+  height: 600px !important; /* Hauteur augmentée pour inclure tous les éléments */
+}
+
+#streaming-platforms {
+  height: 600px !important; /* Beaucoup plus haut pour les labels rotés */
+}
+
+#listening-hours {
+  height: 400px;
+}
+
+#work-correlation {
+  height: 400px;
+}
+
+#genre-cloud {
+  height: 700px !important; /* Forcer une hauteur plus importante */
+}
+
+#exploration-stats {
+  height: 400px;
+}
+
+#mental-health-heatmap {
+  height: 500px; /* Plus grand pour la heatmap */
+}
+
+#music-effects {
+  height: 550px;
+}
+
+#clusters {
+  height: 600px; /* Plus grand pour le clustering */
+}
+
+/* Chart titles */
+.visualization h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* Cluster legends */
+.visualization .cluster-point text {
+  font-size: 14px;
+}
+
+/* Legends */
+.visualization .legend text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Violin plot styles */
+.visualization .violin {
+  stroke: none;
+  fill: var(--chart-primary);
+}
+
+.visualization .tooltip {
+  position: absolute;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 6px;
+  pointer-events: none;
+  font-size: 14px;
+  z-index: 100;
+}
+
+/* Adjust shadow for dark sections */
+.section:nth-child(even) .visualization {
+  box-shadow: 0 4px 24px rgba(255, 255, 255, 0.1);
+}
+
+/* Text adjustment based on background */
+.section:nth-child(odd) .text-content h2 {
+  background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section:nth-child(even) .text-content h2 {
+  background: linear-gradient(135deg, #fff 0%, #f5f5f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section:nth-child(odd) .text-content p {
+  color: #86868b;
+}
+
+.section:nth-child(even) .text-content p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Adjust visualization shadows based on background */
+.section:nth-child(odd) .visualization {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+}
+
+.section:nth-child(even) .visualization {
+  box-shadow: 0 4px 24px rgba(255, 255, 255, 0.1);
+}
+
+.genre-tooltip {
+  z-index: 1000;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
